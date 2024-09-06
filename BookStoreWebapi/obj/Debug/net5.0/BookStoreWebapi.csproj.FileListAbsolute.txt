@@ -32,3 +32,8 @@ C:\Users\talha.karagul\source\repos\BookStore\BookStoreWebapi\obj\Debug\net5.0\r
 C:\Users\talha.karagul\source\repos\BookStore\BookStoreWebapi\obj\Debug\net5.0\BookStoreWebapi.pdb
 C:\Users\talha.karagul\source\repos\BookStore\BookStoreWebapi\obj\Debug\net5.0\BookStoreWebapi.genruntimeconfig.cache
 C:\Users\talha.karagul\source\repos\BookStore\BookStoreWebapi\obj\Debug\net5.0\ref\BookStoreWebapi.dll
+C:\Users\talha.karagul\source\repos\BookStore\BookStoreWebapi\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\talha.karagul\source\repos\BookStore\BookStoreWebapi\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\talha.karagul\source\repos\BookStore\BookStoreWebapi\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Users\talha.karagul\source\repos\BookStore\BookStoreWebapi\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\talha.karagul\source\repos\BookStore\BookStoreWebapi\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
