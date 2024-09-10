@@ -37,3 +37,5 @@ C:\Users\talha.karagul\source\repos\BookStore\BookStoreWebapi\bin\Debug\net5.0\M
 C:\Users\talha.karagul\source\repos\BookStore\BookStoreWebapi\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.InMemory.dll
 C:\Users\talha.karagul\source\repos\BookStore\BookStoreWebapi\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\talha.karagul\source\repos\BookStore\BookStoreWebapi\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\talha.karagul\source\repos\BookStore\BookStoreWebapi\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\talha.karagul\source\repos\BookStore\BookStoreWebapi\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

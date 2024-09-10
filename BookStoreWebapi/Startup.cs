@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using BookStoreWebapi.DBOperations;
 using Microsoft.AspNetCore.Builder;
@@ -35,6 +36,7 @@ namespace BookStoreWebapi
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BookStoreWebapi", Version = "v1" });
             });
             services.AddDbContext<BookStoreDbContext>(opt => opt.UseInMemoryDatabase(databaseName:"BookStoreDB")); //inmemory ile databasein kurulumunu gerçekleştiriyoruz.
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

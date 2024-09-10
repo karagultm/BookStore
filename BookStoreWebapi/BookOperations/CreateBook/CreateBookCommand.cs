@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using AutoMapper;
 using BookStoreWebapi.DBOperations;
 
 namespace BookStoreWebapi.BookOperations.CreateBook
@@ -9,10 +10,11 @@ namespace BookStoreWebapi.BookOperations.CreateBook
 
         public CreateBookModel Model { get; set; }
         private readonly BookStoreDbContext _dbContext;
-        public CreateBookCommand(BookStoreDbContext dbContext)
+        private readonly IMapper _mapper;
+        public CreateBookCommand(BookStoreDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
-
+            _mapper = mapper;
         }
 
         public void Handle()
@@ -22,11 +24,11 @@ namespace BookStoreWebapi.BookOperations.CreateBook
             if (book is not null)
                 throw new InvalidOperationException("Kitap zaten var");
 
-            book = new Book();
-            book.Title = Model.Title;
-            book.GenreId = Model.GenreId;
-            book.PageCount = Model.PageCount;
-            book.PublishDate = Model.PublishDate;
+            book = _mapper.Map<Book>(Model);//new Book();
+            // book.Title = Model.Title;
+            // book.GenreId = Model.GenreId;
+            // book.PageCount = Model.PageCount;
+            // book.PublishDate = Model.PublishDate;
 
             _dbContext.Books.Add(book);
             _dbContext.SaveChanges();

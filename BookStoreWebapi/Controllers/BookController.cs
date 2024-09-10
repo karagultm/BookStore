@@ -7,6 +7,7 @@ using BookStoreWebapi.BookOperations.UpdateBook;
 using BookStoreWebapi.DBOperations;
 using Microsoft.AspNetCore.Mvc;
 using BookStoreWebapi.BookOperations.DeleteBook;
+using AutoMapper;
 
 namespace BookStoreWebapi.Controllers
 {
@@ -16,16 +17,18 @@ namespace BookStoreWebapi.Controllers
     public class BookController : ControllerBase
     {
         private readonly BookStoreDbContext _context;
-        public BookController(BookStoreDbContext context)
+        private readonly IMapper _mapper;
+        public BookController(BookStoreDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
 
         [HttpGet]
         public IActionResult GetBooks()
         {
-            GetBooksQuery query = new GetBooksQuery(_context);
+            GetBooksQuery query = new GetBooksQuery(_context,_mapper);
             var result = query.Handle();
             return Ok(result);
         }
@@ -34,8 +37,17 @@ namespace BookStoreWebapi.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            GetByIdQuery query = new GetByIdQuery(_context);
-            var result = query.Handle(id);
+            
+            BookViewModel result;
+            try
+            {
+                GetByIdQuery query = new GetByIdQuery(_context, _mapper);
+                result = query.Handle(id);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
             return Ok(result);
         }
@@ -53,7 +65,7 @@ namespace BookStoreWebapi.Controllers
         //yani int string bool gibi ifadelerde from body kullanmak zorundasın 
         public IActionResult AddBook([FromBody] CreateBookModel newBook)
         {
-            CreateBookCommand command = new CreateBookCommand(_context);
+            CreateBookCommand command = new CreateBookCommand(_context, _mapper);
             try
             {
                 command.Model = newBook;
