@@ -1,12 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.IO.Compression;
 using System.Linq;
 using BookStoreWebapi.BookOperations.CreateBook;
+using BookStoreWebapi.BookOperations.GetBook;
 using BookStoreWebapi.BookOperations.GetBooks;
+using BookStoreWebapi.BookOperations.UpdateBook;
 using BookStoreWebapi.DBOperations;
 using Microsoft.AspNetCore.Mvc;
-using static BookStoreWebapi.BookOperations.CreateBook.CreateBookCommand;
 
 namespace BookStoreWebapi.Controllers
 {
@@ -32,12 +31,12 @@ namespace BookStoreWebapi.Controllers
 
 
         [HttpGet("{id}")]
-        public Book GetById(int id)
+        public IActionResult GetById(int id)
         {
-            // var book = BookList.Where(x=> x.Id == id).FirstOrDefault();
-            // var book = BookList.Where(x=> x.Id == id);
-            var book = _context.Books.Where(x => x.Id == id).SingleOrDefault();
-            return book;
+            GetBookQuery query = new GetBookQuery(_context);
+            var result = query.Handle(id);
+
+            return Ok(result);
         }
 
         // [HttpGet] // aynı anda 2 tane http get i yazamıyorsun eğer yazarsan conflict yersin haberin olsun.
@@ -68,19 +67,19 @@ namespace BookStoreWebapi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateBook(int id, [FromBody] Book updatedBook)
+        public IActionResult UpdateBook(int id, [FromBody] UpdateBookModel updatedBook)
         {
+            UpdateBookCommand command = new UpdateBookCommand(_context);
+            try
+            {
+                command.model = updatedBook;
+                command.Handle(id);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
-            var book = _context.Books.SingleOrDefault(x => x.Id == id);
-            if (book is null)
-                return BadRequest();
-
-            book.PageCount = updatedBook.PageCount != default ? updatedBook.PageCount : book.PageCount;
-            book.GenreId = updatedBook.GenreId != default ? updatedBook.GenreId : book.GenreId;
-            book.Title = updatedBook.Title != default ? updatedBook.Title : book.Title;
-            book.PublishDate = updatedBook.PublishDate != default ? updatedBook.PublishDate : book.PublishDate;
-
-            _context.SaveChanges();
             return Ok();
 
         }
