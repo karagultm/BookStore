@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using BookStoreWebapi.BookOperations.CreateBook;
-using BookStoreWebapi.BookOperations.GetBook;
+using BookStoreWebapi.BookOperations.GetById;
 using BookStoreWebapi.BookOperations.GetBooks;
 using BookStoreWebapi.BookOperations.UpdateBook;
 using BookStoreWebapi.DBOperations;
@@ -33,7 +33,7 @@ namespace BookStoreWebapi.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            GetBookQuery query = new GetBookQuery(_context);
+            GetByIdQuery query = new GetByIdQuery(_context);
             var result = query.Handle(id);
 
             return Ok(result);

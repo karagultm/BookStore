@@ -2,14 +2,14 @@ using System.Linq;
 using BookStoreWebapi.Common;
 using BookStoreWebapi.DBOperations;
 
-namespace BookStoreWebapi.BookOperations.GetBook
+namespace BookStoreWebapi.BookOperations.GetById
 {
-    public class GetBookQuery
+    public class GetByIdQuery
     {
 
         private readonly BookStoreDbContext _dbContext;
 
-        public GetBookQuery(BookStoreDbContext dbContext)
+        public GetByIdQuery(BookStoreDbContext dbContext)
         {
             _dbContext = dbContext;
         }
