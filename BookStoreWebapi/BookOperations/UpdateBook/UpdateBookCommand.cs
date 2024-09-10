@@ -22,10 +22,8 @@ namespace BookStoreWebapi.BookOperations.UpdateBook
             if (book is null)
                 throw new Exception("Böyle bir kitap bulunamadı!");
 
-            book.PageCount = model.PageCount != default ? model.PageCount : book.PageCount;
             book.GenreId = model.GenreId != default ? model.GenreId : book.GenreId;
             book.Title = model.Title != default ? model.Title : book.Title;
-            book.PublishDate = model.PublishDate != default ? model.PublishDate : book.PublishDate;
 
             _dbContext.SaveChanges();
         }
@@ -34,7 +32,7 @@ namespace BookStoreWebapi.BookOperations.UpdateBook
     {
         public string Title { get; set; }
         public int GenreId { get; set; }
-        public int PageCount { get; set; }
-        public DateTime PublishDate { get; set; }
+   
+
     }
 }
