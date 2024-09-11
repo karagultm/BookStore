@@ -8,6 +8,8 @@ using BookStoreWebapi.DBOperations;
 using Microsoft.AspNetCore.Mvc;
 using BookStoreWebapi.BookOperations.DeleteBook;
 using AutoMapper;
+using FluentValidation.Results;
+using FluentValidation;
 
 namespace BookStoreWebapi.Controllers
 {
@@ -28,7 +30,7 @@ namespace BookStoreWebapi.Controllers
         [HttpGet]
         public IActionResult GetBooks()
         {
-            GetBooksQuery query = new GetBooksQuery(_context,_mapper);
+            GetBooksQuery query = new GetBooksQuery(_context, _mapper);
             var result = query.Handle();
             return Ok(result);
         }
@@ -37,7 +39,7 @@ namespace BookStoreWebapi.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            
+
             BookViewModel result;
             try
             {
@@ -69,7 +71,15 @@ namespace BookStoreWebapi.Controllers
             try
             {
                 command.Model = newBook;
+                CreateBookCommandValidator validator = new CreateBookCommandValidator();
+                // ValidationResult result = validator.Validate(command); 
+                validator.ValidateAndThrow(command);
                 command.Handle();
+                // if (!result.IsValid)
+                //     foreach (var item in result.Errors)
+                //         Console.WriteLine("Özellik: " + item.PropertyName + " - Mesaj: " + item.ErrorMessage);
+                // else
+                //     command.Handle();
             }
             catch (Exception ex)
             {
@@ -104,6 +114,8 @@ namespace BookStoreWebapi.Controllers
             try
             {
                 command.BookId = id;
+                DeleteBookCommandValidator validator = new DeleteBookCommandValidator();
+                validator.ValidateAndThrow(command);
                 command.Handle();
             }
             catch (Exception ex)

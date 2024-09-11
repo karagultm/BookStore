@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "jNlEoUm5PPY=",
+  "dgSpecHash": "yAZ4fW3bF1k=",
   "success": true,
   "projectFilePath": "C:\\Users\\talha.karagul\\source\\repos\\BookStore\\BookStoreWebapi\\BookStoreWebapi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\talha.karagul\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\talha.karagul\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
+    "C:\\Users\\talha.karagul\\.nuget\\packages\\fluentvalidation\\10.1.0\\fluentvalidation.10.1.0.nupkg.sha512",
     "C:\\Users\\talha.karagul\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\talha.karagul\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.6\\microsoft.entityframeworkcore.5.0.6.nupkg.sha512",
     "C:\\Users\\talha.karagul\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.6\\microsoft.entityframeworkcore.abstractions.5.0.6.nupkg.sha512",
