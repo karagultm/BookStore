@@ -44,7 +44,10 @@ namespace BookStoreWebapi.Controllers
             try
             {
                 GetByIdQuery query = new GetByIdQuery(_context, _mapper);
-                result = query.Handle(id);
+                query.BookId = id;
+                GetByIdQueryValidator validator = new GetByIdQueryValidator();
+                validator.ValidateAndThrow(query);
+                result = query.Handle();
             }
             catch (Exception ex)
             {
@@ -96,7 +99,10 @@ namespace BookStoreWebapi.Controllers
             try
             {
                 command.model = updatedBook;
-                command.Handle(id);
+                UpdateBookCommandValidator validator = new UpdateBookCommandValidator();
+                validator.ValidateAndThrow(command);
+                command.BookId = id;
+                command.Handle();
             }
             catch (Exception ex)
             {

@@ -8,6 +8,7 @@ namespace BookStoreWebapi.BookOperations.GetById
 {
     public class GetByIdQuery
     {
+        public int BookId {get; set;}
 
         private readonly BookStoreDbContext _dbContext;
         private readonly IMapper _mapper;
@@ -18,11 +19,11 @@ namespace BookStoreWebapi.BookOperations.GetById
             _mapper = mapper;
         }
 
-        public BookViewModel Handle(int id)
+        public BookViewModel Handle()
         {
             // var book = BookList.Where(x=> x.Id == id).FirstOrDefault();
             // var book = BookList.Where(x=> x.Id == id);
-            var book = _dbContext.Books.Where(x => x.Id == id).SingleOrDefault();
+            var book = _dbContext.Books.Where(x => x.Id == BookId).SingleOrDefault();
             if (book is null)
                 throw new Exception("Kitap bulunamadı");
                 
